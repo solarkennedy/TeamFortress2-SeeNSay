@@ -1,5 +1,6 @@
 #include <WaveHC.h>
 #include <WaveUtil.h>
+#include <FatReader.h>
 
 SdReader card;    // This object holds the information for the card
 FatVolume vol;    // This holds the information for the partition on the card
@@ -63,10 +64,15 @@ void loop() {
   Serial.println(theclass);
   
   //Play class specific prelude
-  String preludefile = "preludes/" + theclass + ".wav";
-  playcomplete(preludefile);
+  String preludefile = "PRELUDES/" + theclass + ".WAV";
+  char charfile[50];
+  preludefile.toCharArray(charfile, 50);
+  playfile(charfile);
     
   // Play random class sound
   //play(root);
+  
+  delay(5000);
+  
 }
 

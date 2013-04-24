@@ -77,31 +77,31 @@ void play(FatReader &dir) {
 String randomclass() {
     switch (random(1, 10)) {
     case 1:
-      return "demoman";
+      return "DEMOMAN";
       break;
     case 2:
-      return "engineer";
+      return "ENGINEER";
       break;
     case 3:
-      return "heavy";
+      return "HEAVY";
       break;
     case 4:
-      return "medic";
+      return "MEDIC";
       break;
     case 5:
-      return "pyro";
+      return "PYRO";
       break;
     case 6:
-      return "scout";
+      return "SCOUT";
       break;
     case 7:
-      return "sniper";
+      return "SNIPER";
       break;
     case 8:
-      return "soldier";
+      return "SOLDIER";
       break;
     case 9:
-      return "spy";
+      return "SPY";
       break;
     default: 
       return "ERROR: No class?";
@@ -128,7 +128,7 @@ void playfile(char *name) {
     wave.stop(); // stop it
   }
   // look in the root directory and open the file
-  if (!file.open(vol, name)) {
+  if (!file.open(root, name)) {
     putstring("Couldn't open file "); Serial.println(name); return;
   }
   // OK read the file and turn it into a wave object
