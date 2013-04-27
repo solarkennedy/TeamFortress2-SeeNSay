@@ -102,3 +102,33 @@ void playfile(char *name) {
   // ok time to play! start playback
   wave.play();
 }
+
+void playone(FatReader &dir) {
+  FatReader file;
+  Serial.println();            // clear out a new line
+    
+  for (uint8_t i = 0; i < dirLevel; i++) {
+   Serial.write(' ');       // this is for prettyprinting, put spaces in front
+  }
+  if (!file.open(vol, dirBuf)) {        // open the file in the directory
+    error("file.open failed");          // something went wrong
+  }
+    
+  putstring("Playing ");
+  printEntryName(dirBuf);              // print it out
+  if (!wave.create(file)) {            // Figure out, is it a WAV proper     
+    putstring(" Not a valid WAV");     // ok skip it
+  } else {
+    Serial.println();                  // Hooray it IS a WAV proper!
+    wave.play();                       // make some noise!
+        
+    uint8_t n = 0;
+    while (wave.isplaying) {// playing occurs in interrupts, so we print dots in realtime
+      putstring(".");         if (!(++n % 32))Serial.println();
+      delay(100);
+    }       
+    sdErrorCheck();                    // everything OK?
+      // if (wave.errors)Serial.println(wave.errors);     // wave decoding errors
+  }
+}
+

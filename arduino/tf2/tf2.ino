@@ -20,7 +20,7 @@ void play(FatReader &dir);
 
 void setup() {
   randomSeed(analogRead(0));
-  Serial.begin(9600);           // set up Serial library at 9600 bps for debugging  
+  Serial.begin(115200);           // set up Serial library at 9600 bps for debugging  
   putstring_nl("\nWave test!");  // say we woke up!
   putstring("Free RAM: ");       // This can help with debugging, running out of RAM is bad
   Serial.println(FreeRam());
@@ -57,7 +57,7 @@ void setup() {
 
 
 void loop() {
-  root.rewind();
+  root.openRoot(vol);
   
   //Figure out what class we should play
   String theclass = randomclass();
@@ -65,20 +65,11 @@ void loop() {
   Serial.println(theclass);
   
   //Play class specific prelude
-  root.open(root, "preludes");
-  playcomplete(theclass + ".wav");
-    
+  play_tf2prelude(theclass);
+  
   // Play random class sound
-  root.rewind();
-   
-  char classfolder[sizeof(theclass)];
-  theclass.toCharArray(classfolder, sizeof(theclass));
+  play_tf2class(theclass);
 
-  root.open(root, classfolder);
-  play(root);
-
-  
-  delay(50000);
-  
+  delay(500);
 }
 
