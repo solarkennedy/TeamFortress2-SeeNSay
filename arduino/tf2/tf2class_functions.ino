@@ -33,8 +33,10 @@ String randomclass() {
 }
 
 void play_tf2class(String tf2class) {
-  char classfolder[sizeof(tf2class)];
-  tf2class.toCharArray(classfolder, sizeof(tf2class));
+  char classfolder[8];
+  // Need space to hold 8 characters and a newline?
+  tf2class.toCharArray(classfolder, 9);
+
   root.openRoot(vol);
   if (!root.open(root, classfolder)) {
     Serial.println("Couldn't open dir:" + tf2class);
@@ -49,20 +51,22 @@ void play_tf2class(String tf2class) {
    //Serial.println();
   }
   root.rewind();
-  Serial.print("The number of files here is: ");
-  Serial.println(folderSize);
-  
-  // Even though random will give us a file one less than the number
-  // When we "play" will actually play the "next" file
-  // So 0 will end up playing file #1
-  int filetoplay = random(0, folderSize);
+
+  int filetoplay = random(1, folderSize+1);
   int counter = 0;
+  
+  // Move the dirBuf to the random location in the directory structure
   while ( filetoplay != counter ) 
   {
     root.readDir(dirBuf);
     counter++;
   }
-  Serial.print("Going to play file: ");
+  
+  Serial.print("Going to play file #");
+  Serial.print(filetoplay);
+  Serial.print("/");
+  Serial.print(folderSize);
+  Serial.print(" : ");
   printEntryName(dirBuf);
   playone(root);
   Serial.println("");

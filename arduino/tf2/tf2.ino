@@ -7,8 +7,6 @@ FatVolume vol;    // This holds the information for the partition on the card
 FatReader root;   // This holds the information for the volumes root directory
 FatReader file;   // Holds the file to play
 WaveHC wave;      // This is the only wave (audio) object, since we will only play one at a time
-
-uint8_t dirLevel; // indent level for file/dir names    (for prettyprinting)
 dir_t dirBuf;     // buffer for directory reads
 
 // Define macro to put error messages in flash memory
@@ -19,7 +17,7 @@ void play(FatReader &dir);
 
 
 void setup() {
-  randomSeed(analogRead(0));
+  randomSeed(analogRead(1));
   Serial.begin(115200);           // set up Serial library at 9600 bps for debugging  
   putstring_nl("\nWave test!");  // say we woke up!
   putstring("Free RAM: ");       // This can help with debugging, running out of RAM is bad
@@ -61,7 +59,7 @@ void loop() {
   
   //Figure out what class we should play
   String theclass = randomclass();
-  Serial.print("Our Random class is:");
+  Serial.print("Our Random class is: ");
   Serial.println(theclass);
   
   //Play class specific prelude
