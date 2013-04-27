@@ -14,6 +14,10 @@ dir_t dirBuf;     // buffer for directory reads
 // Define macro to put error messages in flash memory
 #define error(msg) error_P(PSTR(msg))
 
+// Function definitions (we define them here, but the code is below)
+void play(FatReader &dir);
+
+
 void setup() {
   randomSeed(analogRead(0));
   Serial.begin(9600);           // set up Serial library at 9600 bps for debugging  
@@ -51,9 +55,6 @@ void setup() {
   
 }
 
-// Function definitions (we define them here, but the code is below)
-void play(FatReader &dir);
-
 
 void loop() {
   root.rewind();
@@ -64,15 +65,20 @@ void loop() {
   Serial.println(theclass);
   
   //Play class specific prelude
-  String preludefile = "PRELUDES/" + theclass + ".WAV";
-  char charfile[50];
-  preludefile.toCharArray(charfile, 50);
-  playfile(charfile);
+  root.open(root, "preludes");
+  playcomplete(theclass + ".wav");
     
   // Play random class sound
-  //play(root);
+  root.rewind();
+   
+  char classfolder[sizeof(theclass)];
+  theclass.toCharArray(classfolder, sizeof(theclass));
+
+  root.open(root, classfolder);
+  play(root);
+
   
-  delay(5000);
+  delay(50000);
   
 }
 
