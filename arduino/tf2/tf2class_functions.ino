@@ -1,30 +1,35 @@
+
 String randomclass() {
-    switch (random(1, 10)) {
-    case 1:
+  return tf2class(random(1,10));
+}
+
+String tf2class(int input) {
+    switch (input) {
+    case DEMOMAN:
       return "DEMOMAN";
       break;
-    case 2:
+    case ENGINEER:
       return "ENGINEER";
       break;
-    case 3:
+    case HEAVY:
       return "HEAVY";
       break;
-    case 4:
+    case MEDIC:
       return "MEDIC";
       break;
-    case 5:
+    case PYRO:
       return "PYRO";
       break;
-    case 6:
+    case SCOUT:
       return "SCOUT";
       break;
-    case 7:
+    case SNIPER:
       return "SNIPER";
       break;
-    case 8:
+    case SOLDIER:
       return "SOLDIER";
       break;
-    case 9:
+    case SPY:
       return "SPY";
       break;
     default: 
@@ -76,3 +81,33 @@ void play_tf2prelude(String tf2class){
   root.open(root, "preludes");
   playcomplete(tf2class + ".wav");
 }
+
+
+int class_decode(int resistor) {
+  // Maps resistor values to what class physically on the face of the seeNsay
+  switch (resistor) {
+    case 220:
+      return SOLDIER;
+    case 330:
+      return SNIPER;
+    case 470:
+      return DEMOMAN;
+    case 680:
+      return HEAVY;
+    case 1000:
+      return MEDIC;
+    case 2200:
+      return ENGINEER;
+    case 3300:
+      return SPY;
+    case 4700:
+      return SCOUT;
+    case 10000:
+      return PYRO;
+    default:
+      // This should never happen
+      Serial.println("class_decode couldn't find the class?");
+      return 0;
+  }
+}
+

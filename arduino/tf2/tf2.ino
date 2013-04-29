@@ -9,6 +9,18 @@ FatReader file;   // Holds the file to play
 WaveHC wave;      // This is the only wave (audio) object, since we will only play one at a time
 dir_t dirBuf;     // buffer for directory reads
 
+int spinner_pin = 5;
+
+#define DEMOMAN 1
+#define ENGINEER 2
+#define HEAVY 3
+#define MEDIC 4
+#define PYRO 5
+#define SCOUT 6
+#define SNIPER 7
+#define SOLDIER 8
+#define SPY 9
+
 // Define macro to put error messages in flash memory
 #define error(msg) error_P(PSTR(msg))
 
@@ -58,7 +70,8 @@ void loop() {
   root.openRoot(vol);
   
   //Figure out what class we should play
-  String theclass = randomclass();
+//  String theclass = randomclass();
+  String theclass = spinner_detect();
   Serial.print("Our Random class is: ");
   Serial.println(theclass);
   
