@@ -1,5 +1,12 @@
 String spinner_detect() {
-  return tf2class(class_decode(measure_resistor()));
+  // Measure what we have right off the bat
+  int the_resistor = measure_resistor();
+  // sleep while we are still on that sector, don't start speaking
+  // until the spinner moves and the resistor changes ok?
+  while (the_resistor == measure_resistor()) {
+     delay(100);
+   }
+  return tf2class(class_decode(the_resistor));
 }
 
 int measure_resistor() {

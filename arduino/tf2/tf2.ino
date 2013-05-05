@@ -62,15 +62,8 @@ void setup() {
   if (!root.openRoot(vol)) {
     error("Can't open root dir!");      // Something went wrong,
   }
-  
-}
-
-
-void loop() {
-  root.openRoot(vol);
-  
+    
   //Figure out what class we should play
-//  String theclass = randomclass();
   String theclass = spinner_detect();
   Serial.print("Our Random class is: ");
   Serial.println(theclass);
@@ -80,7 +73,12 @@ void loop() {
   
   // Play random class sound
   play_tf2class(theclass);
+  
+}
 
-  delay(500);
+
+void loop() {
+  //This seeNsay is on a switch with the handle
+  //Only do the setup and no more
 }
 

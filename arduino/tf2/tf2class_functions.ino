@@ -4,6 +4,8 @@ String randomclass() {
 }
 
 String tf2class(int input) {
+    // I guess I could use strings throughout,
+    // But defines are cool
     switch (input) {
     case DEMOMAN:
       return "DEMOMAN";
@@ -87,23 +89,23 @@ int class_decode(int resistor) {
   // Maps resistor values to what class physically on the face of the seeNsay
   switch (resistor) {
     case 220:
-      return SOLDIER;
-    case 330:
-      return SNIPER;
-    case 470:
-      return DEMOMAN;
-    case 680:
-      return HEAVY;
-    case 1000:
-      return MEDIC;
-    case 2200:
       return ENGINEER;
-    case 3300:
-      return SPY;
-    case 4700:
+    case 330:
+      return HEAVY;
+    case 470:
       return SCOUT;
-    case 10000:
+    case 680:
+      return SPY;
+    case 1000:
       return PYRO;
+    case 2200:
+      return SOLDIER;
+    case 3300:
+      return MEDIC;
+    case 4700:
+      return SNIPER;
+    case 10000:
+      return DEMOMAN;
     default:
       // This should never happen
       Serial.println("class_decode couldn't find the class?");

@@ -61,6 +61,7 @@ void spinner_detect() {
 
 float normalize_resistor(float input) {
   // Manually normalize the input values coming from the analog pin
+  // Manually normalize the input values coming from the analog pin
   if (input < 110) 
     return 0;
    else if (input >= 110 && input <275) 
