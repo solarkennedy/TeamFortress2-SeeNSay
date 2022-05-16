@@ -1,5 +1,10 @@
 # TeamFortress 2 See N' Say
 
+[Blog Post](https://www.xkyle.com/a-team-fortress-2-see-n-say/)
+
+Video:
+[![Watch the video](https://img.youtube.com/vi/rj96xSTL3J4/0.jpg)](https://www.youtube.com/watch?v=rj96xSTL3J4)
+
 ### Pieces:
 - Many [See N' Says](http://en.wikipedia.org/wiki/See_'n_Say) to destroy (I burned through 3)
 - An [Arduino](http://arduino.cc/en/) (yes, because I'm a lazy noob)
